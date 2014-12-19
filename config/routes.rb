@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  #devise_for :customers
+  devise_for :customers, controllers: { sessions: "customers/sessions", registrations: "customers/registrations", confirmations: "customers/confirmations", passwords: "customers/passwords" }
+
   root :to => 'dashboard_customer#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
