@@ -1,9 +1,25 @@
 Rails.application.routes.draw do
 
+  root :to => 'dashboard_customer#index'
+
+  get 'dashboard_employee' => 'dashboard_employee#index'
+
+  #devise_for :employees
+  devise_for :employees, controllers: { sessions: "employees/sessions", registrations: "employees/registrations", confirmations: "employees/confirmations", passwords: "employees/passwords" } 
+
   #devise_for :customers
   devise_for :customers, controllers: { sessions: "customers/sessions", registrations: "customers/registrations", confirmations: "customers/confirmations", passwords: "customers/passwords" }
-
-  root :to => 'dashboard_customer#index'
+  
+  authenticated :employee do
+    devise_scope :employee do
+      root to: "start_employee#index", :as => "start_employee/index"
+    end
+  end
+  unauthenticated do
+    #devise_scope :customer do
+     root :to => 'start_customer#index'
+    #end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
