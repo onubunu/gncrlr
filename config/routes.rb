@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root :to => 'dashboard_customer#index'
-
+  # root :to => 'dashboard_customer#index'
+  
   get 'dashboard_employee' => 'dashboard_employee#index'
 
   #devise_for :employees
@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   
   authenticated :employee do
     devise_scope :employee do
-      root to: "start_employee#index", :as => "start_employee/index"
+      root :to => 'dashboard_employee#index', :as => "dashboard_employee/index"
     end
   end
   unauthenticated do
     #devise_scope :customer do
-     root :to => 'start_customer#index'
+     root :to => 'dashboard_customer#index'
     #end
   end
   

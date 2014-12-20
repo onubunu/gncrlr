@@ -14,7 +14,6 @@ class Employees::RegistrationsController < Devise::RegistrationsController
     if current_customer.present?
       redirect_to root_path, notice: 'Sign out customer before.' 
     else
-
       if Employee.count == 0
         #Start: original new-action-prozedur
         build_resource({})
@@ -25,9 +24,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
         yield resource if block_given?
         respond_with self.resource
         #Ende: original new-action-prozedur
-
       else
-
         if current_employee.blank? 
           redirect_to new_employee_session_path
         else
@@ -41,9 +38,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
           respond_with self.resource
           #Ende: original new-action-prozedur
         end
-
       end
-
     end
   end
 
@@ -83,7 +78,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_inactive_sign_up_path_for(resource)
-    start_employee_path
+    dashboard_employee_path
   end
 
   def authenticate
