@@ -1,0 +1,87 @@
+<p>
+  <strong>Prename:</strong>
+  <%= @customer.prename %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @customer.surname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>Encrypted password:</strong>
+  <%= @customer.encrypted_password %>
+</p>
+
+<p>
+  <strong>Reset password token:</strong>
+  <%= @customer.reset_password_token %>
+</p>
+
+<p>
+  <strong>Reset password sent at:</strong>
+  <%= @customer.reset_password_sent_at %>
+</p>
+
+<p>
+  <strong>Remember created at:</strong>
+  <%= @customer.remember_created_at %>
+</p>
+
+<p>
+  <strong>Sign in count:</strong>
+  <%= @customer.sign_in_count %>
+</p>
+
+<p>
+  <strong>Current sign in at:</strong>
+  <%= @customer.current_sign_in_at %>
+</p>
+
+<p>
+  <strong>Last sign in at:</strong>
+  <%= @customer.last_sign_in_at %>
+</p>
+
+<p>
+  <strong>Current sign in ip:</strong>
+  <%= @customer.current_sign_in_ip %>
+</p>
+
+<p>
+  <strong>Last sign in ip:</strong>
+  <%= @customer.last_sign_in_ip %>
+</p>
+
+<p>
+  <strong>Confirmation token:</strong>
+  <%= @customer.confirmation_token %>
+</p>
+
+<p>
+  <strong>Confirmed at:</strong>
+  <%= @customer.confirmed_at %>
+</p>
+
+<p>
+  <strong>Confirmation sent at:</strong>
+  <%= @customer.confirmation_sent_at %>
+</p>
+
+<p>
+  <strong>Unconfirmed email:</strong>
+  <%= @customer.unconfirmed_email %>
+</p>
+
+<p>
+  <strong>Banned:</strong>
+  <%= @customer.banned %>
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

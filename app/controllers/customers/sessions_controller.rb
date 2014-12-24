@@ -5,6 +5,18 @@ class Customers::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
+  def new
+    if employee_signed_in?
+      Devise.setup do |config|
+        config.authentication_keys = [:email, :prename]
+      end
+    else
+      Devise.setup do |config|
+        config.authentication_keys = [:email]
+      end
+    end
+    super
+  end
 
   # POST /resource/sign_in
   # def create
@@ -15,6 +27,12 @@ class Customers::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  def destroy
+    signed_out = sign_out :customer
+    set_flash_message :notice, :signed_out if signed_out && is_flashing_format?
+    yield if block_given?
+    respond_to_on_destroy
+  end
 
   # protected
 

@@ -8,11 +8,20 @@
     <%= f.text_field :prename %>
   </div>
 
+  <% if current_employee.present? %>
+    <%= f.hidden_field :confirmed_at, value: Time.now %>
+  <% end %>
+
   <div class="field">
     <%= f.label :surname %><br />
     <%= f.text_field :surname %>
   </div>
-  
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>

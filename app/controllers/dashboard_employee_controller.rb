@@ -1,7 +1,7 @@
 class DashboardEmployeeController < ApplicationController
 
   def index
-    if current_customer.present?
+    if current_employee.blank? && current_customer.present?
       redirect_to root_path, notice: 'Sign out customer before.' 
     else
       if Employee.count == 0

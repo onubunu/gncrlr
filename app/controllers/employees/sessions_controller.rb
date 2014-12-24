@@ -6,18 +6,13 @@ class Employees::SessionsController < Devise::SessionsController
   #   super
   # end
   def new
-    if current_customer.present?
+    if current_employee.blank? && current_customer.present?
       redirect_to root_path, notice: 'Sign out customer before.' 
     else
       if Employee.count == 0
         redirect_to new_employee_registration_path
       else
-        #Start: original new-action-prozedur
-        self.resource = resource_class.new(sign_in_params)
-        clean_up_passwords(resource)
-        yield resource if block_given?
-        respond_with(resource, serialize_options(resource))
-        #Ende: original new-action-prozedur
+        super
       end
     end
   end

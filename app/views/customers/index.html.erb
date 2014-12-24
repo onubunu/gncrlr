@@ -1,0 +1,57 @@
+<h1>Listing customers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Prename</th>
+      <th>Surname</th>
+      <th>Email</th>
+      <th>Encrypted password</th>
+      <th>Reset password token</th>
+      <th>Reset password sent at</th>
+      <th>Remember created at</th>
+      <th>Sign in count</th>
+      <th>Current sign in at</th>
+      <th>Last sign in at</th>
+      <th>Current sign in ip</th>
+      <th>Last sign in ip</th>
+      <th>Confirmation token</th>
+      <th>Confirmed at</th>
+      <th>Confirmation sent at</th>
+      <th>Unconfirmed email</th>
+      <th>Banned</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.prename %></td>
+        <td><%= customer.surname %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.encrypted_password %></td>
+        <td><%= customer.reset_password_token %></td>
+        <td><%= customer.reset_password_sent_at %></td>
+        <td><%= customer.remember_created_at %></td>
+        <td><%= customer.sign_in_count %></td>
+        <td><%= customer.current_sign_in_at %></td>
+        <td><%= customer.last_sign_in_at %></td>
+        <td><%= customer.current_sign_in_ip %></td>
+        <td><%= customer.last_sign_in_ip %></td>
+        <td><%= customer.confirmation_token %></td>
+        <td><%= customer.confirmed_at %></td>
+        <td><%= customer.confirmation_sent_at %></td>
+        <td><%= customer.unconfirmed_email %></td>
+        <td><%= customer.banned %></td>
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer', new_customer_path %>
