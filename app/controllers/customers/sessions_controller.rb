@@ -7,12 +7,18 @@ class Customers::SessionsController < Devise::SessionsController
   # end
   def new
     if employee_signed_in?
+      def Customer.find_for_database_authentication(conditions={})
+        find_by(phone: conditions[:phone]) && find_by(surname: conditions[:phonecode]) || find_by(phonecode: conditions[:phonecode])
+      end
       Devise.setup do |config|
-        config.authentication_keys = [:email, :prename]
+        config.authentication_keys = [:phone, :phonecode]
       end
     else
+      def Customer.find_for_database_authentication(conditions={})
+        find_by(email: conditions[:email]) || find_by(phone: conditions[:email])
+      end
       Devise.setup do |config|
-        config.authentication_keys = [:email]
+        config.authentication_keys = [:email] #|| config.authentication_keys = [:phone]
       end
     end
     super

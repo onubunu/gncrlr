@@ -3,25 +3,20 @@ class Customer < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+	before_save :titleize
+	before_create :titleize
+
+	def titleize
+	  self.prename = self.prename.titleize
+	  self.surname = self.surname.titleize
+	end
+
+  validates :title, presence: true
   validates :prename, length: {:minimum => 2}
   validates :surname, length: {:minimum => 2}
+	validates :phone, uniqueness: true, :length => { :in => 6..12 }, :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, :message => "is not validd" }
+  validates :birthdate, presence: true
+
+  TITLE = ["Frau", "Herr"];
   
-	def self.find_for_database_authentication(conditions={})
-		find_by(phone: conditions[:email]) || find_by(email: conditions[:email])
-	end
-	 # def self.find_first_by_auth_conditions(conditions={})
-  # if current_employee.present?
-  #   find_by(prename: conditions[:login])
-  # else
-  #   find_by(email: conditions[:login])
-  # end
-  # end
-
-# config/initializers/desvise.rb
-# if controller == "employees/sessions"
-# Devise.setup do |config|
-#   config.authentication_keys = [:prename]
-# end
-# end
-
 end
