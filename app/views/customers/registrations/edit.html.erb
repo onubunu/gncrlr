@@ -32,8 +32,9 @@
 
     <div>
       <%= f.label :birthdate %><br />
-      <%= f.date_select :birthdate, :start_year => Date.current.year - 18, :end_year => Date.current.year - 120 %>
+      <%= f.date_select :birthdate, :prompt => { day: "", month: "", year: "" } , :start_year => Date.current.year - 18, :end_year => Date.current.year - 120 %>
     </div>
+
     <div>
       <%= f.label :birthdate %><br />
       <%= f.date_field :birthdate, :readonly => true %>
@@ -85,11 +86,7 @@
  
     <div>
       <%= f.label :birthdate %><br />
-      <%= f.date_select :birthdate, :start_year => Date.current.year - 18, :end_year => Date.current.year - 120 %>
-    </div>
-    <div>
-      <%= f.label :birthdate %><br />
-      <%= f.date_field :birthdate, :readonly => true %>
+      <%= f.date_select :birthdate, :prompt => { day: "", month: "", year: "" } , :start_year => Date.current.year - 18, :end_year => Date.current.year - 120 %>
     </div>
 
     <div class="field">

@@ -22,6 +22,9 @@ class Employees::SessionsController < Devise::SessionsController
   #   super
   # end
   def create
+    Customer.validates :phone, uniqueness: true, :length => { :in => 6..12 }, :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, :message => "is not valid" }
+    Customer.validates :phonecode, presence: true
+    Customer.validates :birthdate, presence: true
     sign_out :customer
     super
   end

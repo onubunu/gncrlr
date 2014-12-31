@@ -9,12 +9,12 @@
 
     <div class="field">
       <%= f.label :title %><br />      
-      <%= f.select :title, Customer::TITLE, :prompt => "" %>
+      <%= f.select :title, Customer::TITLE, :prompt => "", autofocus: true   %>
     </div>
 
     <div class="field">
       <%= f.label :prename %><br />
-      <%= f.text_field :prename, autofocus: true%>
+      <%= f.text_field :prename %>
     </div>
 
     <div class="field">
@@ -32,7 +32,7 @@
       <%= f.text_field :phonecode %>
     </div>
 
-    <div>
+    <div class="field">
       <%= f.label :birthdate %><br />
       <%= f.date_select :birthdate, :prompt => { day: "", month: "", year: "" } , :start_year => Date.current.year - 18, :end_year => Date.current.year - 120 %>
     </div>
@@ -58,23 +58,8 @@
     <h2>Sign up</h2>
 
     <div class="field">
-      <%= f.label :title %><br />      
-      <%= f.select :title, Customer::TITLE, :prompt => "" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :prename %><br />
-      <%= f.text_field :prename, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :surname %><br />
-      <%= f.text_field :surname %>
-    </div>
-
-    <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email %>
+      <%= f.email_field :email, autofocus: true %>
     </div>
 
     <div class="field">
@@ -88,6 +73,21 @@
     <div class="field">
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :title %><br />      
+      <%= f.select :title, Customer::TITLE, :prompt => "" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :prename %><br />
+      <%= f.text_field :prename %>
+    </div>
+
+    <div class="field">
+      <%= f.label :surname %><br />
+      <%= f.text_field :surname %>
     </div>
 
     <div class="actions">
