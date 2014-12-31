@@ -4,7 +4,10 @@ class Employees::RegistrationsController < Devise::RegistrationsController
 
   if Employee.count == 0
     before_filter :authenticate
-  end  
+  else
+    prepend_before_filter :authenticate_scope!, only: [:new, :create, :cancel, :edit, :update, :destroy]
+    skip_before_filter :require_no_authentication, only: [:create, :new]
+  end 
 
   # GET /resource/sign_up
   # def new

@@ -11,13 +11,15 @@ Rails.application.routes.draw do
   devise_for :customers, controllers: { sessions: "customers/sessions", registrations: "customers/registrations", confirmations: "customers/confirmations", passwords: "customers/passwords" }
   
   authenticated :employee do
-        resources :customers, only: [ :show, :index, :new, :create, :edit, :destroy, :update]
+    resources :customers, only: [ :show, :index, :new, :create, :edit, :destroy, :update]
+    resources :employees, only: [ :show, :index, :edit, :destroy, :update]
     #devise_scope :employee do
       root :to => 'dashboard_employee#index', :as => "dashboard_employee/index"
     #end
   end
   unauthenticated do
     #resources :customers, only: [ :show, :index, :new, :create, :edit, :destroy, :update]
+    resources :employees, only: [ :show, :index, :edit, :destroy, :update]
     #devise_scope :customer do
      root :to => 'dashboard_customer#index'
     #end

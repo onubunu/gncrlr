@@ -1,0 +1,63 @@
+<h1>Listing employees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Prename</th>
+      <th>Surname</th>
+      <th>Email</th>
+      <th>Encrypted password</th>
+      <th>Reset password token</th>
+      <th>Reset password sent at</th>
+      <th>Remember created at</th>
+      <th>Sign in count</th>
+      <th>Current sign in at</th>
+      <th>Last sign in at</th>
+      <th>Current sign in ip</th>
+      <th>Last sign in ip</th>
+      <th>Confirmation token</th>
+      <th>Confirmed at</th>
+      <th>Confirmation sent at</th>
+      <th>Unconfirmed email</th>
+      <th>Banned</th>
+      <th>Admin</th>
+      <th>Manager</th>
+      <th>Approved</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.prename %></td>
+        <td><%= employee.surname %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.encrypted_password %></td>
+        <td><%= employee.reset_password_token %></td>
+        <td><%= employee.reset_password_sent_at %></td>
+        <td><%= employee.remember_created_at %></td>
+        <td><%= employee.sign_in_count %></td>
+        <td><%= employee.current_sign_in_at %></td>
+        <td><%= employee.last_sign_in_at %></td>
+        <td><%= employee.current_sign_in_ip %></td>
+        <td><%= employee.last_sign_in_ip %></td>
+        <td><%= employee.confirmation_token %></td>
+        <td><%= employee.confirmed_at %></td>
+        <td><%= employee.confirmation_sent_at %></td>
+        <td><%= employee.unconfirmed_email %></td>
+        <td><%= employee.banned %></td>
+        <td><%= employee.admin %></td>
+        <td><%= employee.manager %></td>
+        <td><%= employee.approved %></td>
+        <td><%= link_to 'Show', employee %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New Employee", new_employee_registration_path, :class => 'navbar-link'  %>
