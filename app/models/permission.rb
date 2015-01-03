@@ -11,6 +11,7 @@ class Permission < Struct.new(:employee, :customer)
     return true if controller == "employees/registrations" && action.in?(%w[ new create ]) && Employee.count == 0
     return true if controller == "employees/passwords" 
     return true if controller == "employees/confirmations" && Employee.count == 1
+    return true if employee.admin?
 
     #####
     if customer
