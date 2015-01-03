@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gncrlr</title>
+  <link rel="shortcut icon" href='<%= ENV["FAVICON_PATH"] %>' />
+  <title><%= ENV["APPLICATION_NAME"] %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
