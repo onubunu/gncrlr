@@ -5,7 +5,25 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  if Employee.count >= 1
+    before_filter :authorize
+  end 
+
+  delegate :allow?, to: :current_permission
+  helper_method :allow?
+
   protected
+
+  def current_permission
+   @current_permission ||= Permission.new(current_employee, current_customer)
+  end
+
+  def authorize
+    if !current_permission.allow?(params[:controller], params[:action])
+      #redirect_to root_url, alert: "Not authorized."
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
+  end
 
   def configure_devise_permitted_parameters
     registration_params = [:birthdate, :title, :phonecode, :phone, :prename, :surname, :email, :password, :password_confirmation, :admin, :confirmed_at]
