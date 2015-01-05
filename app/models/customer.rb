@@ -10,25 +10,31 @@ class Customer < ActiveRecord::Base
 	  self.prename = self.prename.titleize
 	  self.surname = self.surname.titleize
 	end
+  
+  validates :phone, uniqueness: true, :length => { :in => 6..12 }, :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, :message => "is not valid" }, :unless => Proc.new { |employee| employee.password.blank? }
+    
+  #validates :title, :presence => true, :unless => Proc.new { |employee| employee.password.blank? }
+  validates :title, :presence => true, :unless => Proc.new { |employee| employee.present? }
+  validates :title, :presence => true, :if => Proc.new { |employee| employee.present? }
 
-  validates :title, 
-    :presence => true
-  validates :prename, 
-    :length => {:minimum => 2}
-  validates :surname, 
-    :length => {:minimum => 2}
-  validates :phone, 
-    :presence  => true,
-    :on => :update,
-    :uniqueness => true, 
-    :allow_blank => true,
-    :length => { :in => 6..12 }, 
-    :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, 
-    :message => "is not valid" }
-  validates :birthdate, 
-    :presence  => true,
-    :on => :update,
-    :allow_blank => true 
+  # validates :title, 
+  #   :presence => true
+  # validates :prename, 
+  #   :length => {:minimum => 2}
+  # validates :surname, 
+  #   :length => {:minimum => 2}
+  # validates :phone, 
+  #   :presence  => true,
+  #   :on => :update,
+  #   :uniqueness => true, 
+  #   :allow_blank => true,
+  #   :length => { :in => 6..12 }, 
+  #   :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, 
+  #   :message => "is not valid" }
+  # validates :birthdate, 
+  #   :presence  => true,
+  #   :on => :update,
+  #   :allow_blank => true 
 
   TITLE = ["Frau", "Herr"];
   
