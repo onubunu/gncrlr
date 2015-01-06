@@ -10,7 +10,7 @@ class Customer < ActiveRecord::Base
 	  self.prename = self.prename.titleize
 	  self.surname = self.surname.titleize
 	end
-z
+
   #muesteri
   validates :title, 
     :presence => true,
