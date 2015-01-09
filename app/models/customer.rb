@@ -11,57 +11,57 @@ class Customer < ActiveRecord::Base
 	  self.surname = self.surname.titleize
 	end
 
-  #muesteri
-  validates :title, 
-    :presence => true,
-    :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
-  validates :prename, 
-    :presence => true,
-    :length => {:minimum => 2},
-    :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
-  validates :surname,
-    :presence => true,
-    :length => {:minimum => 2},
-    :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
-  validates :phone, 
-    :presence  => true,
-    :on => :update,
-    :uniqueness => true, 
-    :allow_blank => true,
-    :length => { :in => 6..12 }, 
-    :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, 
-    :message => "is not valid" },
-    :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
-  validates :birthdate, 
-    :presence  => true,
-    :on => :update,
-    :allow_blank => true,
-    :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
+  # #muesteri
+  # validates :title, 
+  #   :presence => true,
+  #   :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
+  # validates :prename, 
+  #   :presence => true,
+  #   :length => {:minimum => 2},
+  #   :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
+  # validates :surname,
+  #   :presence => true,
+  #   :length => {:minimum => 2},
+  #   :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
+  # validates :phone, 
+  #   :presence  => true,
+  #   :on => :update,
+  #   :uniqueness => true, 
+  #   :allow_blank => true,
+  #   :length => { :in => 6..12 }, 
+  #   :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, 
+  #   :message => "is not valid" },
+  #   :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
+  # validates :birthdate, 
+  #   :presence  => true,
+  #   :on => :update,
+  #   :allow_blank => true,
+  #   :if => Proc.new { |customer| customer.password.present? } && Proc.new { |employee| employee.password.blank? }
   
-  #calisan
-  validates :title, 
-    :presence => true,
-    :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
-  validates :prename,
-    :presence  => true,
-    :length => {:minimum => 2},
-    :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
-  validates :surname,
-    :presence  => true,
-    :length => {:minimum => 2},
-    :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
-  validates :phone, 
-    :uniqueness => true,
-    :length => { :in => 6..12 }, 
-    :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, 
-    :message => "is not valid" },
-    :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
-  validates :phonecode, 
-    :presence  => true,
-    :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
-  validates :birthdate, 
-    :presence  => true,
-    :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
+  # #calisan
+  # validates :title, 
+  #   :presence => true,
+  #   :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
+  # validates :prename,
+  #   :presence  => true,
+  #   :length => {:minimum => 2},
+  #   :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
+  # validates :surname,
+  #   :presence  => true,
+  #   :length => {:minimum => 2},
+  #   :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
+  # validates :phone, 
+  #   :uniqueness => true,
+  #   :length => { :in => 6..12 }, 
+  #   :format => { :with => /\A[0-9\+\-\/\(\)]+\Z/i, 
+  #   :message => "is not valid" },
+  #   :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
+  # validates :phonecode, 
+  #   :presence  => true,
+  #   :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
+  # validates :birthdate, 
+  #   :presence  => true,
+  #   :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
 
   TITLE = ["Frau", "Herr"];
   
