@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :categorizations
+
+  resources :categories
+
+  resources :products
+
   # root :to => 'dashboard_customer#index'
   
   get 'dashboard_employee' => 'dashboard_employee#index'
