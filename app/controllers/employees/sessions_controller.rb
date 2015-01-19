@@ -30,6 +30,15 @@ class Employees::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  def destroy
+      def Customer.find_for_database_authentication(conditions={})
+        find_by(email: conditions[:email]) || find_by(phone: conditions[:email])
+      end
+      Devise.setup do |config|
+        config.authentication_keys = [:email] #|| config.authentication_keys = [:phone]
+      end
+      super
+  end
 
   # protected
 

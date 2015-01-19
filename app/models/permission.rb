@@ -91,7 +91,7 @@ class Permission < Struct.new(:employee, :customer)
   # Zugriff auf Devise-Employee-Password-Nicht-Erhalten-Funktion erlauben (nur für den ersten Employee):
     return true if controller == "employees/confirmations" && Employee.count == 1
   # Employee-Admin hat die selben Rechte
-    return true if employee.admin?
+    #return true if employee.admin?
     #return true if employee.manager?
 
     ##############
@@ -104,16 +104,19 @@ class Permission < Struct.new(:employee, :customer)
     end
 
     ##############
-    if employee
-    # Zugriff auf Devise-Customer-Registration anlegen/bearbeiten erlauben:
-      return true if controller == "customers/registrations" && action.in?(%w[ new create edit update ])
+#     if employee
+#     # Zugriff für Admin/Manager auf Devise-Customer-Registration anlegen/bearbeiten erlauben:
+#       return true if controller == "customers/registrations" && action.in?(%w[ new create edit update ]) if !employee.admin?
 
-      return true if controller == "employees" && action.in?(%w[ index show ])
+# return true if controller == "products" && action.in?(%w[ show index edit update new create destroy ]) if !employee.admin?
+# return true if controller == "products" && action.in?(%w[ show index edit update new create destroy ]) if employee.manager? #|| employee.admin?
+#       return true if controller == "employees" && action.in?(%w[ index show ])
 
-    # Zugriff auf Devise-Employee-Registration anlegen/bearbeiten erlauben:
-    # Employee-Admin hat die selben Rechte
-      return true if employee.admin?
-    end
+#     # Zugriff auf Devise-Employee-Registration anlegen/bearbeiten erlauben:
+#       return true if controller == "employees/registrations" && action.in?(%w[ new create edit update ]) 
+#     #Employee-Admin hat die selben Rechte
+#       #return true if employee.admin?
+#     end
     
     ##############
     #if employee.admin?
