@@ -67,7 +67,8 @@
 #in arbeit##############################################
 class Permission < Struct.new(:employee, :customer)
   def allow?(controller, action)
-  #   return true if controller == "products" && action.in?(%w[ show index ])
+
+    return true if controller == "products" && action.in?(%w[ show index ])
     
   #Nichtangemeldete#############
   # Zugriff auf Customer-Startseite erlauben:
@@ -103,6 +104,7 @@ class Permission < Struct.new(:employee, :customer)
       #return true if employee.manager?
 
       return true if controller == "products" && action.in?(%w[ show index ])
+
     end
 
     #staff_sales#############
