@@ -101,6 +101,8 @@ class Permission < Struct.new(:employee, :customer)
     # Employee-Admin hat die selben Rechte
       #return true if employee.present? && employee.admin?
       #return true if employee.manager?
+
+      return true if controller == "products" && action.in?(%w[ show index ])
     end
 
     #staff_sales#############
