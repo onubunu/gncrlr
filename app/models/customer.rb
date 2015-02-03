@@ -100,6 +100,34 @@ class Customer < ActiveRecord::Base
   #   :presence  => true,
   #   :if => Proc.new { |employee| employee.password.present? } && Proc.new { |customer| customer.password.present? }
 
+
+
+# #aus controller
+#   def new
+#     Customer.validates :prename, :length => {:minimum => 2}
+#        Customer.validates :title, :presence => true
+# #Customer.validates :prename, :length => {:minimum => 2}
+
+#     Customer.validates :phone, presence: true, :allow_blank => true
+#     Customer.validates :phonecode, presence: true, :allow_blank => true
+#     Customer.validates :birthdate, presence: true, :allow_blank => true
+#     super
+#   end
+
+#   # PUT /resource
+#   def update
+#     super
+#             Customer.validates :prename, :length => {:minimum => 2}
+#        Customer.validates :title, :presence => true
+# #Customer.validates :prename, :length => {:minimum => 2}
+
+#     Customer.validates :phone, presence: true, :allow_blank => true
+#     Customer.validates :phonecode, presence: true, :allow_blank => true
+#     Customer.validates :birthdate, presence: true, :allow_blank => true
+#   end
+
+
+
   TITLE = ["Frau", "Herr"];
   
 end
