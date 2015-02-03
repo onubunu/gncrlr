@@ -4,6 +4,8 @@
   <% if employee_signed_in? %>
 
     <h2>Customer Edit <%= resource_name.to_s.humanize %></h2>
+
+    <%= f.hidden_field :created_by_employee, value: true %>
     
     <div>
       <%= f.label :title %><br />
@@ -21,16 +23,6 @@
     </div>
     
     <div>
-      <%= f.label :phone %><br />
-      <%= f.text_field :phone %>
-    </div>
-
-    <div>
-      <%= f.label :phonecode %><br />
-      <%= f.text_field :phonecode %>
-    </div>
-
-    <div>
       <%= f.label :birthdate %><br />
       <%= f.date_select :birthdate, :prompt => { day: "", month: "", year: "" } , :start_year => Date.current.year - 18, :end_year => Date.current.year - 120 %>
     </div>
@@ -38,6 +30,16 @@
     <div>
       <%= f.label :birthdate %><br />
       <%= f.date_field :birthdate, :readonly => true %>
+    </div>
+
+    <div>
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone %>
+    </div>
+
+    <div>
+      <%= f.label :phonecode %><br />
+      <%= f.text_field :phonecode %>
     </div>
 
     <div class="field">
@@ -68,7 +70,14 @@
   <% else %>
 
     <h2>Edit <%= resource_name.to_s.humanize %></h2>
-    
+    <%= f.check_box :newsletter %>
+    <%= f.hidden_field :created_by_employee, value: false %>
+
+    <div>
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :readonly => true %>
+    </div> 
+
     <div>
       <%= f.label :prename %><br />
       <%= f.text_field :prename, :readonly => true %>
@@ -78,15 +87,15 @@
       <%= f.label :surname %><br />
       <%= f.text_field :surname, :readonly => true %>
     </div>
-    
-    <div>
-      <%= f.label :phone %><br />
-      <%= f.text_field :phone %>
-    </div>
  
     <div>
       <%= f.label :birthdate %><br />
       <%= f.date_select :birthdate, :prompt => { day: "", month: "", year: "" } , :start_year => Date.current.year - 18, :end_year => Date.current.year - 120 %>
+    </div>
+    
+    <div>
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone %>
     </div>
 
     <div class="field">
@@ -111,6 +120,11 @@
     <div class="field">
       <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.check_box :newsletter %>
+      <%= f.label :newsletter %>
     </div>
 
     <div class="actions">

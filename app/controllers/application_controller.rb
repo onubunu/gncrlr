@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
+  #raise sessions.to_yaml
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   if Employee.count >= 1
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_devise_permitted_parameters
-    registration_params = [:birthdate, :title, :phonecode, :phone, :prename, :surname, :email, :password, :password_confirmation, :admin, :confirmed_at]
+    registration_params = [:newsletter, :created_by_employee, :birthdate, :title, :phonecode, :phone, :prename, :surname, :email, :password, :password_confirmation, :admin, :confirmed_at]
 
     if params[:action] == 'update'
       devise_parameter_sanitizer.for(:account_update) { 
