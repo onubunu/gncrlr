@@ -108,17 +108,17 @@ class Permission < Struct.new(:employee, :customer)
     if employee && employee.head_hr? || employee && employee.manager? 
       return true if controller == "employees" && action.in?(%w[ show index edit update new create destroy ])
       return true if controller == "employees/registrations" && action.in?(%w[ show index edit update new create destroy ])
-      return true if employee && employee.admin?
     end
 
     #staff_buying#############
     if employee && employee.staff_buying? || employee && employee.head_buying? || employee && employee.manager? 
-      return true if controller == "products" && action.in?(%w[ show index edit update new create destroy ])
+
     end
 
     #head_buying#############
     if employee && employee.head_buying? || employee && employee.manager? 
       return true if controller == "products" && action.in?(%w[ show index edit update new create destroy ])
+      return true if controller == "categories" && action.in?(%w[ show index edit update new create destroy ])
     end
 
     #staff_sales#############
