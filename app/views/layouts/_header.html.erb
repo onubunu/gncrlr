@@ -1,3 +1,5 @@
+<%= link_to "Home", root_path %>
+
 <% if current_employee.present? || request.fullpath.include?(employee_registration_path) %>
 
   <p class="navbar-text pull-right">
@@ -31,3 +33,4 @@
   <% end %></p>
 
 <% end %>
+
