@@ -72,6 +72,8 @@ class Permission < Struct.new(:employee, :customer)
   #Jeder angemeldete und nichtangemeldete User#############
   # Zugriff auf Produkte anzeigen erlauben:
     return true if controller == "products" && action.in?(%w[ show index ])
+  # Zugriff auf Kategorien anzeigen erlauben:
+    return true if controller == "categories" && action.in?(%w[ show index edit ])
   # Zugriff auf Customer-Startseite erlauben:
     return true if controller == "dashboard_customer"
   # # Zugriff auf Devise-Customer-Registration anlegen erlauben, wenn kein Employee vorhanden:

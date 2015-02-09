@@ -10,3 +10,14 @@
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
+
+<br />
+<br />
+<% Categorization.where(category_id: @category.id).sort_by{ |categorization| [categorization.id] }.each do |categorization| %>
+    
+  <%= categorization.product_id %><%= Product.where("id = " + categorization.product_id.to_s).first.name %><br />
+    
+<% end %>
+
+
+
