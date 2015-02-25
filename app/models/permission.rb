@@ -68,6 +68,8 @@
 class Permission < Struct.new(:employee, :customer)
   def allow?(controller, action)
 
+    return true if controller == "carts" && action.in?(%w[ new create update destroy show index ])
+    return true if controller == "line_items" && action.in?(%w[ create update destroy ])
 
   #Jeder angemeldete und nichtangemeldete User#############
   # Zugriff auf Produkte anzeigen erlauben:

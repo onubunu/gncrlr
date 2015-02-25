@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204130339) do
+ActiveRecord::Schema.define(version: 20150223114408) do
+
+  create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -92,6 +97,17 @@ ActiveRecord::Schema.define(version: 20150204130339) do
 
   add_index "employees", ["email"], name: "index_employees_on_email", unique: true
   add_index "employees", ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+
+  create_table "line_items", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity",   default: 1
+  end
+
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id"
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id"
 
   create_table "products", force: true do |t|
     t.string   "name"

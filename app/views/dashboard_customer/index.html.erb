@@ -34,6 +34,7 @@
         <% if allow? "products", "destroy" %>
           <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
+        <td><%= button_to 'Add to Cart', line_items_path(product_id: product) %></td>
       </tr>
     <% end %>
   </tbody>
