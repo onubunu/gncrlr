@@ -34,6 +34,12 @@ class Customers::SessionsController < Devise::SessionsController
   #   super
   # end
   def destroy
+    #neu
+    @cart = Cart.find(session[:cart_id])#.destroy
+    @cart.destroy 
+    session[:cart_id] = nil
+    #neu ende
+
     signed_out = sign_out :customer
     set_flash_message :notice, :signed_out if signed_out && is_flashing_format?
     yield if block_given?
