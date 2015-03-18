@@ -2,6 +2,36 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
+  before_action :set_customer_id_to_cart
+
+#unter private
+    def set_customer_id_to_cart
+      if customer_signed_in? && @cart.user_id.blank?
+        @cart.user_id = current_customer.id
+        @cart.save!
+      end
+    end
+######################## in bearbeitung
+#   prepend_before_action :sss
+# def sss
+
+
+  
+#   customer_line_item = LineItem.where(cart_id: !0)
+
+#   customer_line_item.each do |customer_line_item|
+#   active_product = Product.find_by(id: customer_line_item[:product_id])
+#   if active_product.active == false
+#     customer_line_item.destroy
+#     customer_line_item.save!
+#   end
+# end
+# end
+
+######################
+
+
+
   # GET /carts
   # GET /carts.json
   def index
