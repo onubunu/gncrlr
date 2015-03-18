@@ -95,10 +95,10 @@ class Customers::SessionsController < Devise::SessionsController
       # die user cart in die session laden
       session[:cart_id] = customer_cart.id
     else
-      # sonst aktuellen cart die current_user.id zuweisen
+      # sonst aktuellen cart die current_user.id zuweisen wenn cpassende cart vorhanden
       cart = Cart.find_by(id: session[:cart_id])
-      cart.update(user_id: current_customer.id)
-      cart.save!
+      cart.update(user_id: current_customer.id) if cart
+      cart.save! if cart
     end
  ##########################################################################   
     super
